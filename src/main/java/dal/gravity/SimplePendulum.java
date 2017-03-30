@@ -4,9 +4,6 @@ package dal.gravity;
  * Represents pendulums exhibiting (approximately) simple harmonic motion
  */
 public class SimplePendulum extends AbstractPendulum {
-
-	/** gravitational constant */
-    public static final double GRAVITY = 9.80665;
 	
     private double angularFrequency, periodOfMotion;
 
@@ -16,11 +13,12 @@ public class SimplePendulum extends AbstractPendulum {
      * inMass: the point mass (>0)
      * inTheta0: angular displacement at t=0 (0<=theta0<=pi/6)
      */
-    public SimplePendulum (double inLength, double inMass, double inTheta0) {
-	super (inLength, inMass, inTheta0, GRAVITY);
-	angularFrequency = Math.sqrt (this.getGravitationalField () / this.getStringLength ());
+    public SimplePendulum (double inLength, double inMass, double inTheta0, GravityModel inModel) {
+	super (inLength, inMass, inTheta0, inModel);
+	angularFrequency = Math.sqrt (getGravityModel().getGravitationalField () / this.getStringLength ());
 	periodOfMotion = 2 * Math.PI 
-	    * Math.sqrt (this.getStringLength () / this.getGravitationalField ());
+	    * Math.sqrt (this.getStringLength () / getGravityModel().getGravitationalField ());
+	
     }
 
     /**
