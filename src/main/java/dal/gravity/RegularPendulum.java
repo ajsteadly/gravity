@@ -3,8 +3,12 @@ package dal.gravity;
 /**
  * Represents a pendulum
  */
-public class RegularPendulum extends AbstractEarthPendulum {
-    private double delta, iterations = 0;
+public class RegularPendulum extends AbstractPendulum {
+    
+	/** gravitational constant */
+    public static final double GRAVITY = 9.80665;
+	
+	private double delta, iterations = 0;
     private double dissipation;
     private double lastTheta, lastVel, lastAccel;
 
@@ -13,7 +17,7 @@ public class RegularPendulum extends AbstractEarthPendulum {
      */
     public RegularPendulum (double inLength, double inMass, double inTheta0, 
 		     double inDelta, double inDiss) {
-	super (inLength, inMass, inTheta0);
+	super (inLength, inMass, inTheta0, GRAVITY);
 	delta=inDelta;
 	dissipation = inDiss;
 	lastVel = 0;
